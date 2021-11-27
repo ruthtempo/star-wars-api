@@ -6,21 +6,18 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 
     state:{
-        starships:[
-            {
-             //    EMPTY OBJECT
-                name:"caqui",
-                model:"caquito",
-            },
-            {
-              name:"pruty",
-              model:"frutty"
-            }
-         ]
+        starships: []
     },
     mutations:{
       saveStarships(state, starships){
         state.starships = starships
+
+        starships.forEach(starship => {
+          const id = parseInt(starship.url.slice(32,-1))
+          starship.id= id
+          
+        });
+        
       }
     },
     actions:{
