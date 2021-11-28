@@ -3,7 +3,7 @@
     <img class="logo" src="./assets/starwars_logo.png" alt="">
     <ul class="navigation">
       <li><router-link to="/">Home</router-link></li>
-      <li ><router-link to="/starships">Starships</router-link></li>
+      <li><router-link to="/starships">Starships</router-link></li>
     </ul>
     <router-view></router-view>
   </div>
@@ -24,8 +24,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background: #2A2928;
+  height: min 100vh;
 }
 
 .logo{
@@ -43,8 +43,16 @@ h3 {
 .navigation li{
   display: inline-block;
   margin: 0 10px;
+  
 }
-a {
-  color: #42b983;
+
+a{
+  color: white;
+  text-decoration: none;
 }
+
+a:hover{
+  color:#4EAFBC 
+}
+
 </style>
