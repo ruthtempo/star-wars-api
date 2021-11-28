@@ -17,11 +17,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.home{
-  height:400px;
-  margin:50px;
-  
-}
 
 p, h1{
   color:white

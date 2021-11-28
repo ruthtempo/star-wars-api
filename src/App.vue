@@ -24,9 +24,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background: #2A2928;
   height: min 100vh;
 }
+
+body{background: #2A2928;}
 
 .logo{
   width:200px;
