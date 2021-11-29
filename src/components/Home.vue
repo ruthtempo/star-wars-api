@@ -31,10 +31,16 @@ p, h1{
     /* border-radius: 30%; */
     border-color:#494847;
     border-style:solid;
-    color:white;
+    color:rgb(211, 210, 210);
     cursor:pointer;
     text-decoration: none;
     border-radius:45px;
+}
+
+.startButton:hover{
+  background-color: grey;
+  border-color:grey;
+  color:white;
 }
 
 </style>

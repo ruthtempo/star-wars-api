@@ -40,12 +40,12 @@ h3 {
 
 
 a{
-  color: white;
+  color: rgb(211, 210, 210);
   text-decoration: none;
 }
 
 a:hover{
-  color:#4EAFBC 
+  color:white;
 } 
 
 </style>

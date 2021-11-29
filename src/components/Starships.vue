@@ -8,7 +8,7 @@
         </router-link> 
       </li>
     </ul>
-    <button v-if="$store.state.nextPageUrl" :disabled="$store.state.loading" @click="$store.dispatch('fetchStarships')">View More</button>
+    <button v-if="$store.state.nextPageUrl" :disabled="$store.state.loading" @click="$store.dispatch('fetchStarships')">VIEW MORE</button>
   </div>
 </template>
 
@@ -34,6 +34,11 @@ export default {
     list-style-type: none;
 }
 
+.starship:hover{
+  background-color: grey;
+  color:white;
+}
+
 router-link{
   color: white;
 }
@@ -43,9 +48,14 @@ button{
   margin:20px;
   cursor:pointer;
   background-color:#494847;
-  color:white;
+  color:rgb(211, 210, 210);
   border:none;
   border-radius:10px;
 }
 
+button:hover{
+  background-color: grey;
+  border-color:grey;
+  color:white;
+}
 </style>
