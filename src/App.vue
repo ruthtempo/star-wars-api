@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <img class="logo" src="./assets/starwars_logo.png" alt="">
-    <ul class="navigation">
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/starships">Starships</router-link></li>
-    </ul>
+    <Navigation/>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-
+import Navigation from "./components/Navigation.vue"
 
 export default {
   name: 'App',
+  components:{
+    Navigation,
+  }
   
 }
 </script>
@@ -37,15 +37,7 @@ body{background: #2A2928;}
 h3 {
   margin: 40px 0 0;
 }
-.navigation {
-  list-style-type: none;
-  padding: 0;
-}
-.navigation li{
-  display: inline-block;
-  margin: 0 10px;
-  
-}
+
 
 a{
   color: white;
@@ -54,6 +46,6 @@ a{
 
 a:hover{
   color:#4EAFBC 
-}
+} 
 
 </style>
