@@ -1,18 +1,54 @@
 <template>
   <div id="app">
-    <img class="logo" src="./assets/starwars_logo.png" alt="">
+    <div class="header-wrapper">
+      <div class="social"></div>
+      <div class="logo-wrapper">
+        <img class="logo" src="./assets/starwars_logo.png" alt="">
+      </div>
+      <div class="nav-login">
+        <a @click="modal='showLogin'" >LOGIN</a> 
+        <span> // </span>
+        <a @click="modal='showRegister'">REGISTER</a>
+      </div>
+    </div>
+    <br>
     <Navigation/>
-    <router-view></router-view>
+    <router-view> </router-view>
+
+        <LoginForm 
+        v-if="modal==='showLogin'"
+        @onClose="closeModal"
+        />
+        <RegisterForm
+        v-if="modal==='showRegister'"
+        @onClose="closeModal"
+        />
+
   </div>
 </template>
 
 <script>
 import Navigation from "./components/Navigation.vue"
+import LoginForm from "./components/LoginForm.vue"
+import RegisterForm from "./components/RegisterForm.vue"
+
 
 export default {
   name: 'App',
   components:{
     Navigation,
+    LoginForm,
+    RegisterForm,
+  },
+  data(){
+    return{
+      modal:null
+    }
+  },
+  methods:{
+    closeModal(){
+      this.modal = null
+    }
   }
   
 }
@@ -27,7 +63,10 @@ export default {
   height: min 100vh;
 }
 
-body{background: #2A2928;}
+body{
+  /* background: #2A2928; */
+  background-image: url("./assets/backgrounds-stars.jpeg");
+  }
 
 .logo{
   width:200px;
@@ -48,4 +87,13 @@ a:hover{
   color:white;
 } 
 
+.header-wrapper{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social, .logo-wrapper, .nav-login{
+  flex-basis:20%;
+}
 </style>

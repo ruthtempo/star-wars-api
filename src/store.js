@@ -7,8 +7,8 @@ export default new Vuex.Store({
     state:{
         starships: [],
         nextPageUrl:"https://swapi.dev/api/starships",
-        loading: false //to prevent from doubleclickling -button wi be disabled when true
-    },
+        loading: false, //to prevent from doubleclickling -button wi be disabled when true
+      },
     mutations:{
       saveStarships(state, starshipsNextPage){
         const newStarshipsList = state.starships.concat(starshipsNextPage)
@@ -27,7 +27,8 @@ export default new Vuex.Store({
         state.starships = []
         state.nextPageUrl= "https://swapi.dev/api/starships"
         console.log(state.starships)
-      }
+      },
+
     },
     actions:{
       fetchStarships(context){
