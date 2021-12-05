@@ -5,7 +5,10 @@
       <div class="logo-wrapper">
         <img class="logo" src="./assets/starwars_logo.png" alt="">
       </div>
-      <div class="nav-login">
+      <div class="username-info" v-if="$store.state.userObject">
+        <h4>You are logged in as: {{$store.state.userObject.username}}</h4>
+      </div>
+      <div class="nav-login" v-else>
         <a @click="$store.commit('openModal', 'showLogin')" >LOGIN</a> 
         <span> // </span>
         <a @click="$store.commit('openModal', 'showRegister')">REGISTER</a>
@@ -85,5 +88,13 @@ a:hover{
 
 .social, .logo-wrapper, .nav-login{
   flex-basis:20%;
+}
+
+.username-info{
+  display: flex;
+  justify-content: center;
+  color:white;
+  background-color:black;
+  width:200px;
 }
 </style>

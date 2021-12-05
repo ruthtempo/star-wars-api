@@ -8,7 +8,8 @@ export default new Vuex.Store({
         starships: [],
         nextPageUrl:"https://swapi.dev/api/starships",
         loading: false, //to prevent from doubleclickling -button wi be disabled when true
-        modal:null
+        modal:null,
+        userObject:null
       },
     mutations:{
       saveStarships(state, starshipsNextPage){
@@ -34,6 +35,9 @@ export default new Vuex.Store({
       },
       openModal(state, modal){
         state.modal = modal
+      },
+      signInUser(state, user){
+        state.userObject = user
       }
 
     },

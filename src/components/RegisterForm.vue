@@ -64,6 +64,7 @@ export default {
           password: this.password
         }
         window.localStorage.setItem(key, JSON.stringify(newUser))
+        this.$store.commit('openModal', 'showLogin' )
       }
     }
   }

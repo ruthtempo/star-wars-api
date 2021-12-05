@@ -33,6 +33,9 @@ export default {
 
       if(userJSON !== null && this.password == userObject.password){
         alert("you signed in")
+        this.$store.commit('signInUser', userObject)
+        this.$store.commit ('closeModal')
+
       }else{
         alert("unknown username or wrong password")
       }
