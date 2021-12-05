@@ -6,9 +6,9 @@
         <img class="logo" src="./assets/starwars_logo.png" alt="">
       </div>
       <div class="nav-login">
-        <a @click="modal='showLogin'" >LOGIN</a> 
+        <a @click="$store.commit('openModal', 'showLogin')" >LOGIN</a> 
         <span> // </span>
-        <a @click="modal='showRegister'">REGISTER</a>
+        <a @click="$store.commit('openModal', 'showRegister')">REGISTER</a>
       </div>
     </div>
     <br>
@@ -16,12 +16,12 @@
     <router-view> </router-view>
 
         <LoginForm 
-        v-if="modal==='showLogin'"
-        @onClose="closeModal"
+        v-if="$store.state.modal==='showLogin'"
+        @onClose="$store.commit('closeModal')"
         />
         <RegisterForm
-        v-if="modal==='showRegister'"
-        @onClose="closeModal"
+        v-if="$store.state.modal==='showRegister'"
+        @onClose="$store.commit('closeModal')"
         />
 
   </div>
@@ -40,16 +40,6 @@ export default {
     LoginForm,
     RegisterForm,
   },
-  data(){
-    return{
-      modal:null
-    }
-  },
-  methods:{
-    closeModal(){
-      this.modal = null
-    }
-  }
   
 }
 </script>

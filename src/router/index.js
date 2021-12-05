@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../components/Home'
-import Starships from '../components/Starships'
-import StarshipFile from '../components/StarshipFile'
-// import LoginForm from '../components/LoginForm'
+import Home from '../views/Home'
+import Starships from '../views/Starships'
+import StarshipFile from '../views/StarshipFile'
+
 
 Vue.use(VueRouter)
 
@@ -23,11 +23,7 @@ const routes = [
       name: 'StarshipFile',
       component:StarshipFile
     },
-    // {
-    //   path: '/loginform',
-    //   name: 'LoginForm',
-    //   component: LoginForm
-    // }
+
   ]
 
   const router = new VueRouter({
