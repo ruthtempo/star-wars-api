@@ -9,7 +9,7 @@
       <form>
         <input type="text" v-model="username" placeholder="Username" id="username">
         <input type="password" v-model="password" placeholder="Password" id="password">
-        <button class="signinButton" @click="signIn">Sign in</button>
+        <button class="signinButton" @click="$store.dispatch('signIn', [username, password])">Sign in</button>
       </form>
     </div>
   </div>
@@ -24,24 +24,6 @@ export default {
       password:"",
     }
   },
-  methods:{
-    signIn(){
-
-      const key= this.username
-      const userJSON= (window.localStorage.getItem(key)) 
-      const userObject = JSON.parse(userJSON)
-
-      if(userJSON !== null && this.password == userObject.password){
-        alert("you signed in")
-        this.$store.commit('signInUser', userObject)
-        this.$store.commit ('closeModal')
-
-      }else{
-        alert("unknown username or wrong password")
-      }
-    },
-
-  }
 }
 </script>
 <style scoped>

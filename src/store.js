@@ -82,12 +82,48 @@ export default new Vuex.Store({
           context.commit('savePilot', response)
 
         })
-
+      },
+      signIn(context, [username, password]){
+        const key= username
+        const userJSON= (window.localStorage.getItem(key)) 
+        const userObject = JSON.parse(userJSON)
+  
+        if(userJSON !== null && password == userObject.password){
+          alert("you signed in")
+          context.commit('signInUser', userObject)
+          context.commit ('closeModal')
+  
+        }else{
+          alert("unknown username or wrong password")
+        }
+      },
+      createAccount(context, newUser){
+        // - [ ] If inputed username (value) exists in the object local storage>alert
+        const key = newUser.username
+        const userExists = (window.localStorage.getItem(key) !==null) 
+        
+        if(userExists){
+          alert("user already exists")
+  
+        }else{
+    
+          window.localStorage.setItem(key, JSON.stringify(newUser))
+          context.commit('openModal', 'showLogin' )
+        }
       }
 
     },
     getters:{
-
+      getStarshipFile(state){
+        return state.starshipFile
+      },
+      getPilot:(state)=>(url)=>{
+        return state.pilots[url]
+      },
+      countStarshipPilots(state){
+        
+        return state.starshipFile.pilots? state.starshipFile.pilots.length : 0
+      }
     }
 
 })

@@ -1,12 +1,12 @@
 <template>
     <div class="pilot-card">
-      <ul v-if="$store.state.pilots[url]">
-        <li>Name: {{$store.state.pilots[url].name}}</li> 
-        <li>Height: {{$store.state.pilots[url].height}}</li>
-        <li>Hair Color: {{$store.state.pilots[url].hair_color}}</li>
-        <li>Skin Color: {{$store.state.pilots[url].skin_color}}</li>
-        <li>Eye Color: {{$store.state.pilots[url].eye_color}}</li>
-        <li>Gender: {{$store.state.pilots[url].gender}}</li>
+      <ul v-if="$store.getters.getPilot(url)">
+        <li>Name: {{$store.getters.getPilot(url).name}}</li> 
+        <li>Height: {{$store.getters.getPilot(url).height}}</li>
+        <li>Hair Color: {{$store.getters.getPilot(url).hair_color}}</li>
+        <li>Skin Color: {{$store.getters.getPilot(url).skin_color}}</li>
+        <li>Eye Color: {{$store.getters.getPilot(url).eye_color}}</li>
+        <li>Gender: {{$store.getters.getPilot(url).gender}}</li>
       </ul>
     </div>
 </template>

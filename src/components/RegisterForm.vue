@@ -11,7 +11,7 @@
         <input type="text" v-model="lastName" placeholder="Last Name" required>
         <input type="email" v-model="email" placeholder="Email Address" required>
         <div class="displayNameWrapper">
-          <input type="text" v-model="displayName" placeholder="Display Name" required>
+          <input type="text" v-model="username" placeholder="Display Name" required>
           <p>New display names need to be approved. Until then, you'll see a temporary display name.</p>
         </div>
         <div class="passwordWrapper">
@@ -21,7 +21,10 @@
             Show Password
           </label>
         </div>
-        <button class="createAccountButton" @click="createAccount">Create Account</button>
+        <button
+          class="createAccountButton"
+          @click="$store.dispatch('createAccount', {firstName, lastName, email, username,password})"
+        >Create Account</button>
         <p>Already have an account? Sign In</p>
       </form>
     </div>
@@ -39,7 +42,7 @@ export default {
       firstName:"",
       lastName:"",
       email:"",
-      displayName:"",
+      username:"",
       password:"",
     }
   },
@@ -47,26 +50,7 @@ export default {
     showPassword(){
       !this.checked ? this.type = "text" : this.type = "password"
     },
-    createAccount(){
-      // - [ ] If inputed username (value) exists in the object local storage>alert
-      const key = this.displayName
-      const userExists = (window.localStorage.getItem(key) !==null) 
-      
-      if(userExists){
-        alert("user already exists")
 
-      }else{
-        const newUser ={
-          firstName:this.firstName,
-          lastName:this.lastName,
-          email:this.email,
-          username:this.displayName,
-          password: this.password
-        }
-        window.localStorage.setItem(key, JSON.stringify(newUser))
-        this.$store.commit('openModal', 'showLogin' )
-      }
-    }
   }
 }
 </script>
