@@ -2,7 +2,7 @@
   <div>
     <ul class="starshipList">
       <li class="starship" v-for="(starship, index) in $store.state.starships" :key="index">
-        <router-link :to="{path:'starshipfile', query: {index}}">
+        <router-link :to="{path:'starshipfile', query: {id: starship.id}}">
           Starship Name: {{starship.name}} <br>
           Model:{{starship.model}}
         </router-link> 

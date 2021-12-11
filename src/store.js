@@ -5,12 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
-        starships: [],
-        nextPageUrl:"https://swapi.dev/api/starships",
-        loading: false, //to prevent from doubleclickling -button wi be disabled when true
-        modal:null,
-        userObject:null
+      starships: [],
+      nextPageUrl:"https://swapi.dev/api/starships",
+      loading: false, //to prevent from doubleclickling -button wi be disabled when true
+      modal:null,
+      userObject:null,
+      starshipFile:{},
+      pilots: {
+        //["http://..."]: {...}
       },
+    },
     mutations:{
       saveStarships(state, starshipsNextPage){
         const newStarshipsList = state.starships.concat(starshipsNextPage)
@@ -38,7 +42,17 @@ export default new Vuex.Store({
       },
       signInUser(state, user){
         state.userObject = user
+      },
+      saveStarshipFile(state, starship){
+        state.starshipFile = starship
+      },
+      savePilot(state, pilot){
+        // state.pilots[pilot.url] = pilot
+        state.pilots = {...state.pilots} //copy of the original object. the template wont recognise the change otherwise
+        state.pilots[pilot.url] = pilot
+        console.log(pilot, state.pilots)
       }
+      
 
     },
     actions:{
@@ -50,6 +64,23 @@ export default new Vuex.Store({
             this.state.loading =false
             context.commit('saveStarships', response.results)
             context.commit('updatePageUrl', response.next)
+        })
+      },
+      fetchStarshipFile(context, id){
+        context.commit('saveStarshipFile', {}) //reset old state (starshipfile)
+        fetch(`https://swapi.dev/api/starships/${id}`)
+        .then(response=>response.json())
+        .then(response=>{
+          context.commit('saveStarshipFile', response)
+
+        })
+      },
+      fetchPilotUrl(context, url){
+        fetch(url)
+        .then(response=>response.json())
+        .then(response=>{
+          context.commit('savePilot', response)
+
         })
 
       }
