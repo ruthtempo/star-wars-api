@@ -7,8 +7,14 @@
     </div>
     <h1>CREATE YOUR ACCOUNT</h1>
       <form>
+        <p v-if="errors.length" class="error-message">
+          <b> !! Please correct the following error(s):</b>
+          <ul>
+            <li v-for="error in errors" :key="error">{{ error }}</li>
+          </ul>
+        </p>
         <input type="text" v-model="firstName" placeholder="First Name" required>
-        <input type="text" v-model="lastName" placeholder="Last Name" required>
+        <input type="text" v-model="lastName" placeholder="Last Name">
         <input type="email" v-model="email" placeholder="Email Address" required>
         <div class="displayNameWrapper">
           <input type="text" v-model="username" placeholder="Display Name" required>
@@ -21,9 +27,13 @@
             Show Password
           </label>
         </div>
-        <button
+        <!-- <button
           class="createAccountButton"
           @click="$store.dispatch('createAccount', {firstName, lastName, email, username,password})"
+        >Create Account</button> -->
+        <button
+          class="createAccountButton"
+          @click="checkForm"
         >Create Account</button>
         <p>Already have an account? Sign In</p>
       </form>
@@ -44,12 +54,39 @@ export default {
       email:"",
       username:"",
       password:"",
+      errors:[]
     }
   },
   methods:{
     showPassword(){
       !this.checked ? this.type = "text" : this.type = "password"
     },
+    checkForm(){
+      // if(this.firstName && this.email && this.username && this.password){
+      //   this.$store.dispatch('createAccount', {firstName: this.firstName, lastName:this.lastName, email:this.email, username: this.username,password: this.password})
+      // }
+
+      this.errors =[];
+
+      if(!this.firstName){
+        this.errors.push('Name required')
+      }
+      if(!this.email){
+        this.errors.push('Email required')
+      }
+      if(!this.username){
+        this.errors.push('Username required')
+      }
+      if(!this.password){
+        this.errors.push('Password required')
+      }
+      if(this.password ){
+        this.errors.push('Email required')
+      }
+      if(this.errors.length === 0){
+        this.$store.dispatch('createAccount', {firstName: this.firstName, lastName:this.lastName, email:this.email, username: this.username,password: this.password})
+      }
+    }
 
   }
 }
@@ -122,10 +159,17 @@ h1{
 }
 
 p, label{
-  font-size:12px;
+  font-size:15px;
 }
 .closeButtonWrapper{
   display: flex;
   justify-content: flex-end;
+}
+
+
+
+.error-message, p, ul{
+  color:white;
+  list-style-type: none;
 }
 </style>
