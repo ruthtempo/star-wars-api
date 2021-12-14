@@ -77,10 +77,13 @@ export default {
       if(!this.username){
         this.errors.push('Username required')
       }
+      if(this.username.length <= 7){
+        this.errors.push('Username must be at least 7 characters')
+      }
       if(!this.password){
         this.errors.push('Password required')
       }
-      if(this.password ){
+      if(this.email){
         this.errors.push('Email required')
       }
       if(this.errors.length === 0){

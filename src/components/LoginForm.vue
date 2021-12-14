@@ -7,9 +7,15 @@
       </div>
       <h1>SIGN IN</h1>
       <form>
+        <p v-if="loginErrors.length" class="error-login">
+          <b> Please fill in the required fields:</b>
+          <ul>
+            <li v-for="error in loginErrors" :key="error">{{ error }}</li>
+          </ul>
+        </p>
         <input type="text" v-model="username" placeholder="Username" id="username">
         <input type="password" v-model="password" placeholder="Password" id="password">
-        <button class="signinButton" @click="$store.dispatch('signIn', [username, password])">Sign in</button>
+        <button class="signinButton" @click="checkLogin">Sign in</button>
       </form>
     </div>
   </div>
@@ -22,8 +28,25 @@ export default {
     return{
       username:"",
       password:"",
+      loginErrors:[],
     }
   },
+  methods:{
+    checkLogin(){
+      this.loginErrors =[];
+
+      if(!this.username){
+        this.loginErrors.push('Username required')
+      }
+      if(!this.password){
+        this.loginErrors.push('Password required')
+      }
+      
+      if(this.loginErrors.length === 0){
+        this.$store.dispatch('signIn', [this.username,this.password])
+      }
+    }
+  }
 }
 </script>
 <style scoped>
@@ -97,5 +120,10 @@ h1{
 .closeButtonWrapper{
   display: flex;
   justify-content: flex-end;
+}
+
+.error-message, p, ul{
+  color:white;
+  list-style-type: none;
 }
 </style>
